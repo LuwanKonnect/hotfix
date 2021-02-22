@@ -13,12 +13,23 @@ const EditVideo = (props) => {
     const [v_address, setAddress] = useState(video.v_address || "")
     const [v_image, setImage] = useState(video.v_image || "")
     const [v_lock, setlock] = useState(video.v_lock || 0)
+    const [lockFeedback, setLockFeedback] = useState(video.v_lock !== 0)
     const [nameFeedback, setNameFeedback] = useState(false)
     const [addressFeedback, setAddressFeedback] = useState(false)
     const [imageFeedback, setImageFeedback] = useState(false)
     const history = useHistory()
     // const imageAddress = `${baseUrl}${video.v_image.replace('\\', '/')}`
     const [imageAddress, setImageAddress] = useState(`${baseUrl}${video.v_image.replace('\\', '/')}`)
+    const checkLock = () => {
+        if (lockFeedback) {
+            setLockFeedback(!lockFeedback)
+            setlock(0)
+        } else {
+            setLockFeedback(!lockFeedback)
+            setlock(1)
+        }
+    }
+
     const checkName = () => {
         if (v_name.length === 0) {
             setNameFeedback(true)
@@ -113,7 +124,7 @@ const EditVideo = (props) => {
                 <Row>
                     <Col className='ml-1 mb-1 pt-1' xl='10' md='10' sm='12'>
                         <FormGroup>
-                            <Label for='nameInput'>Name</Label>
+                            <Label for='nameInput'>Name:</Label>
                             <Input type='text' id='nameInput' onBlur = {checkName}
                                    value = {v_name} onChange = {e => setName(e.target.value)}
                                    placeholder='Enter Name' invalid={nameFeedback}/>
@@ -122,7 +133,7 @@ const EditVideo = (props) => {
                     </Col>
                     <Col className='ml-1 mb-1 pt-1' xl='10' md='10' sm='12'>
                         <FormGroup>
-                            <Label for='addressInput'>Video Address</Label>
+                            <Label for='addressInput'>Video Address:</Label>
                             <Input type='text' id='addressInput' onBlur={checkAddress}
                                    value = {v_address} onChange = {e => setAddress(e.target.value)}
                                    placeholder='Enter Video Address' invalid={addressFeedback}/>
@@ -131,7 +142,7 @@ const EditVideo = (props) => {
                     </Col>
                     <Col className='ml-1 mb-1 pt-1' xl='10' md='10' sm='12'>
                         <FormGroup>
-                            <Label for='exampleCustomFileBrowser'>Image</Label>
+                            <Label for='exampleCustomFileBrowser'>Image:</Label>
                             <CustomInput type='file'
                                          id='exampleCustomFileBrowser'
                                          onChange = {(e) => {
@@ -149,18 +160,25 @@ const EditVideo = (props) => {
                     </Col>
 
 
-                    <Col className='ml-2 mb-1 pt-1' xl='10' md='10' sm='12'>
+                    <Col className='ml-2 mb-1 pt-1' xl={{ size: 3, offset: 6 }} md={{ size: 3, offset: 3 }} sm='4'>
                         <FormGroup>
 
                             {/*<Input type='text' id='basicInput'*/}
                             {/*       value = {v_lock} onChange = {e => setlock(e.target.value)}*/}
                             {/*       placeholder='1 is Lock, 0 is no' />*/}
-                            <Label for='basic-number-input'>Lock? 1 is Lock, 0 is No</Label>
-                            <NumberInput id='basic-number-input'
-                                         min = {0}
-                                         max = {1}
-                                         value={v_lock}
-                                         onChange={count => setlock(count)} />
+                            {/*<Label for='basic-number-input'>Lock? 1 is Lock, 0 is No</Label>*/}
+                            {/*<NumberInput id='basic-number-input'*/}
+                            {/*             min = {0}*/}
+                            {/*             max = {1}*/}
+                            {/*             value={v_lock}*/}
+                            {/*             onChange={count => setlock(count)} />*/}
+                            <CustomInput inline type='checkbox' className='mt-1'
+                                         id='exampleCustomCheckbox2'
+                                         onChange={(e) => {
+                                             checkLock()
+                                         }}
+                                         checked = {lockFeedback}
+                                         label='lock' />
                         </FormGroup>
                     </Col>
                     <Col className='ml-2 mb-1 pt-1' xl='3' md='3' sm='12'>
