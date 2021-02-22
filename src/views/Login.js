@@ -20,7 +20,7 @@ const Login = () => {
             if (res.status === 200) {
               console.log(res.data)
               history.push({
-                pathname: '/',
+                pathname: '/home',
                 state: {keyword: res.data}
               })
             }
