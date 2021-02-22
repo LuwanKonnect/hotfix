@@ -4,7 +4,7 @@ import { lazy } from 'react'
 const TemplateTitle = '%s - ATOD Admin Panel'
 
 // ** Default Route
-const DefaultRoute = '/home'
+const DefaultRoute = '/login'
 
 // ** Merge Routes
 const Routes = [
