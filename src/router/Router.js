@@ -16,7 +16,7 @@ import { BrowserRouter as AppRouter, Route, Switch, Redirect } from 'react-route
 
 // ** Routes & Default Routes
 import { DefaultRoute, Routes } from './routes'
-
+import Login from '../views/Login'
 // ** Layouts
 import BlankLayout from '@layouts/BlankLayout'
 import VerticalLayout from '@src/layouts/VerticalLayout'
@@ -168,8 +168,8 @@ const Router = () => {
                               : {})}
                             /*eslint-enable */
                           >
-                            <route.component {...props} />
-                            {/* <FinalRoute route={route} {...props} /> */}
+                            {/*<route.component {...props} />*/}
+                             <FinalRoute route={route} {...props} />
                           </LayoutWrapper>
                         </Suspense>
                       )
@@ -188,19 +188,28 @@ const Router = () => {
     <AppRouter basename={process.env.REACT_APP_BASENAME}>
       <Switch>
         {/* If user is logged in Redirect user to DefaultRoute else to login */}
-        {/* <Route
+        <Route
           exact
           path='/'
           render={() => {
             return isUserLoggedIn() ? <Redirect to={DefaultRoute} /> : <Redirect to='/login' />
           }}
-        /> */}
+        />
+        {/*<Route*/}
+        {/*  exact*/}
+        {/*  path='/'*/}
+        {/*  render={() => {*/}
+        {/*    return <Redirect to={DefaultRoute} />*/}
+        {/*  }}*/}
+        {/*/>*/}
         <Route
-          exact
-          path='/'
-          render={() => {
-            return <Redirect to={DefaultRoute} />
-          }}
+            exact
+            path='/login'
+            render={props => (
+                <Layouts.BlankLayout>
+                  <Login />
+                </Layouts.BlankLayout>
+            )}
         />
         {/* Not Auth Route */}
         <Route

@@ -6,22 +6,32 @@ import '@styles/base/pages/page-auth.scss'
 import axiosInstance from "../utility/axiosInstance"
 import {useState} from "react"
 import logoURL from "@src/assets/images/logo/KONNECT_DIGITAL_LOGO.png"
+import source from "@src/assets/images/pages/konnectdigital02.jpg"
 const Login = () => {
   const [skin, setSkin] = useSkin()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [flag, setFlag] = useState("none")
   const history = useHistory()
-  const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg',
-    source = require(`@src/assets/images/pages/konnectdigital01.png`).default
+  const illustration = skin === 'dark' ? 'login-v2-dark.svg' : 'login-v2.svg'
+    // source = require(`@src/assets/images/pages/konnectdigital02.png`).default
   const signIn = () => {
-    axiosInstance.post('/user/adminLogin', {email, password})
+    axiosInstance.post('/auth/adminLogin', {email, password})
         .then((res) => {
             if (res.status === 200) {
-              console.log(res.data)
+              localStorage.setItem("userData", JSON.stringify({
+                email: "admin@iKollab.com",
+                ability: [
+                  {
+                    action: "manage",
+                    subject: "all"
+                  }
+                ]
+              }))
+              // console.log(res.data)
               history.push({
-                pathname: '/home',
-                state: {keyword: res.data}
+                pathname: '/home'
+                // state: {keyword: res.data}
               })
             }
         }).catch((err) => {
@@ -30,17 +40,17 @@ const Login = () => {
   }
   return (
     <div className='auth-wrapper auth-v2'>
-      <img className="mt-1" src={logoURL} style={{width:100, marginLeft:5, position:'absolute', top:1, left:1}}/>
+      <img className="mt-1" src={logoURL} style={{width:100, marginLeft:5, position:'absolute', top:10, left:10, zIndex: "999" }}/>
       <Row className='auth-inner m-0'>
-        <Col className='d-none d-lg-flex align-items-center p-5' lg='8' sm='12'>
-          <div className='w-100 d-lg-flex align-items-center justify-content-center px-5'>
+        <Col className='d-none d-lg-flex align-items-center' lg='8' sm='12'>
+          <div className='w-100 d-lg-flex align-items-center justify-content-center'>
             <img className='img-fluid' src={source} alt='Login V2' />
           </div>
         </Col>
         <Col className='d-flex align-items-center auth-bg px-2 p-lg-5' lg='4' sm='12'>
           <Col className='px-xl-2 mx-auto' sm='8' md='6' lg='12'>
             <CardTitle tag='h2' className='font-weight-bold mb-1'>
-              Welcome to ATOD! 👋
+              Welcome to iKollab! 👋
             </CardTitle>
             <CardText className='mb-2'>Please sign-in to your account and start the adventure</CardText>
             <Form className='auth-login-form mt-2' onSubmit={e => e.preventDefault()}>

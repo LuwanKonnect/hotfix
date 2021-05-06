@@ -3,7 +3,7 @@
 //Template config options
 const themeConfig = {
   app: {
-    appName: 'ATOD',
+    appName: 'iKollab',
     appLogoImage: require('@src/assets/images/logo/KONNECT DIGITAL SMILEY-01.png').default
   },
   layout: {

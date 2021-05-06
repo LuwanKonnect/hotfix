@@ -35,19 +35,22 @@ import './assets/scss/style.scss'
 
 // ** Service Worker
 import * as serviceWorker from './serviceWorker'
-
+import ability from './configs/acl/ability'
+import { AbilityContext } from './utility/context/Can'
 // ** Lazy load app
 const LazyApp = lazy(() => import('./App'))
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Suspense fallback={<Spinner />}>
-      <ThemeContext>
-        <LazyApp />
-        <ToastContainer newestOnTop />
-      </ThemeContext>
-    </Suspense>
-  </Provider>,
+    <Provider store={store}>
+        <Suspense fallback={<Spinner />}>
+            <AbilityContext.Provider value={ability}>
+                <ThemeContext>
+                    <LazyApp />
+                    <ToastContainer newestOnTop />
+                </ThemeContext>
+            </AbilityContext.Provider>
+        </Suspense>
+    </Provider>,
   document.getElementById('root')
 )
 

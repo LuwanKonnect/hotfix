@@ -1,10 +1,10 @@
-import {Home, Users, Video} from 'react-feather'
+import {Home, Users, BarChart2, Star} from 'react-feather'
 
 export default [
   {
     id: 'home',
     title: 'Home',
-    icon: <Home size={20} />,
+    icon: <BarChart2 size={20} />,
     navLink: '/home'
   },
   {
@@ -14,9 +14,15 @@ export default [
     navLink: '/user-page'
   },
   {
-    id: 'dancePage',
-    title: 'Dance',
-    icon: <Video size={20} />,
-    navLink: '/dance-page'
+    id: 'spacePage',
+    title: 'Space',
+    icon: <Home size={20} />,
+    navLink: '/space-page'
+  },
+  {
+    id: 'categoryPage',
+    title: 'Category',
+    icon: <Star size={20} />,
+    navLink: '/category-page'
   }
 ]

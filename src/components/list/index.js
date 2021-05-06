@@ -64,11 +64,11 @@ const CustomHeader = ({ handleFilter, value, handleStatusValue, statusValue, han
               placeholder='Search User'
             />
           </div>
-          <Input className='w-auto pr-4' type='select' value={statusValue} onChange={handleStatusValue}>
-            <option value='2'>Select Status</option>
-            <option value='0'>Unsubscription</option>
-            <option value='1'>Subscription</option>
-          </Input>
+          {/*<Input className='w-auto pr-4' type='select' value={statusValue} onChange={handleStatusValue}>*/}
+          {/*  <option value='2'>Select Status</option>*/}
+          {/*  <option value='0'>Unsubscription</option>*/}
+          {/*  <option value='1'>Subscription</option>*/}
+          {/*</Input>*/}
         </Col>
       </Row>
     </div>
@@ -85,18 +85,19 @@ const UserList = () => {
 
   useEffect(() => {
 
-    axiosInstance.get(`/user/getUsers?status=${statusValue}&keyword=${value}&page=${currentPage}&amount=${rowsPerPage}`)
+    axiosInstance.get(`/user/GetAllusers?keyword=${value}&page=${currentPage}&amount=${rowsPerPage}`)
         .then((res) => {
+          console.log('ha')
           if (res.status === 200) {
-            // console.log(res.data)
-            setData(res.data)
+            console.log(res.data.users)
+            setData(res.data.users)
           }
         })
-    axiosInstance.get(`/user/totalAmount?status=${statusValue}&keyword=${value}`)
+    axiosInstance.get(`/user/countAllusers?keyword=${value}`)
         .then((res) => {
           if (res.status === 200) {
-            console.log(res.data.totalAmount)
-            setTotalAmount(Number(res.data.totalAmount))
+            console.log(res.data.number)
+            setTotalAmount(Number(res.data.number))
           }
         })
   }, [value, currentPage, statusValue, rowsPerPage])
@@ -120,7 +121,7 @@ const UserList = () => {
   const CustomPagination = () => {
     const [count, setCount] = useState(1)
     useEffect(() => {
-      setCount(Number((totalAmount / rowsPerPage).toFixed(0)))
+      setCount(Number((totalAmount / rowsPerPage).toFixed(0)) + 1)
     }, [totalAmount])
 
 

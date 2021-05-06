@@ -1,10 +1,10 @@
 import { lazy } from 'react'
 
 // ** Document title
-const TemplateTitle = '%s - ATOD Admin Panel'
+const TemplateTitle = '%s - iKollab Admin Panel'
 
 // ** Default Route
-const DefaultRoute = '/login'
+const DefaultRoute = '/home'
 
 // ** Merge Routes
 const Routes = [
@@ -22,20 +22,16 @@ const Routes = [
     layout: 'BlankLayout'
   },
   {
-    path: '/dance-page',
-    component: lazy(() => import('../../views/dance/DancePage'))
+    path: '/space-page',
+    component: lazy(() => import('../../views/SpacePage'))
   },
   {
-    path: '/syllabus-page',
-    component: lazy(() => import('../../views/dance/SyllabusPage'))
+    path: '/category-page',
+    component: lazy(() => import('../../views/Category'))
   },
   {
-    path: '/video-page',
-    component: lazy(() => import('../../views/dance/VideoPage'))
-  },
-  {
-    path: '/editVideo-page',
-    component: lazy(() => import('../../views/dance/EditVideoPage'))
+    path: '/SpaceDetails/*',
+    component: lazy(() => import('../../views/SpaceDetails'))
   },
   {
     path: '/error',

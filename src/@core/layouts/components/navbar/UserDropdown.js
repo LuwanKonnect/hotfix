@@ -40,10 +40,10 @@ const UserDropdown = () => {
     <UncontrolledDropdown tag='li' className='dropdown-user nav-item'>
       <DropdownToggle href='/' tag='a' className='nav-link dropdown-user-link' onClick={e => e.preventDefault()}>
         <div className='user-nav d-sm-flex d-none'>
-          <span className='user-name font-weight-bold'>{(userData && userData['username']) || 'ATOD'}</span>
+          <span className='user-name font-weight-bold'>{(userData && userData['username']) || 'iKollab'}</span>
           <span className='user-status'>{(userData && userData.role) || 'Admin'}</span>
         </div>
-        <Avatar content = {'ATOD'} color={'light-primary'} imgHeight='40' imgWidth='40' status='online' />
+        <Avatar content = {'iKollab'} color={'light-primary'} imgHeight='40' imgWidth='40' status='online' />
       </DropdownToggle>
       <DropdownMenu right>
         {/*<DropdownItem tag={Link} to='#' onClick={e => e.preventDefault()}>*/}

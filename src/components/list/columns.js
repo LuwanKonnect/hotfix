@@ -35,31 +35,20 @@ const renderClient = row => {
     states = ['light-success', 'light-danger', 'light-warning', 'light-info', 'light-primary', 'light-secondary'],
     color = states[stateNum]
 
-  if (row.u_image.length) {
-    return <Avatar className='mr-50' img={`${baseUrl}${row.u_image.replace('\\', '/')}`} width='32' height='32' />
+  if (row.profileImageUrl) {
+    return <Avatar className='mr-50' img={`${row.profileImageUrl}`} width='32' height='32' />
   } else {
-    return <Avatar color={color} className='mr-50' content={row.u_firstname ? (`${row.u_firstname} ${row.u_firstname}`) : 'John Doe'} initials />
+    return <Avatar color={color} className='mr-50' content={row.firstName ? (`${row.firstName} ${row.firstName}`) : 'John Doe'} initials />
   }
 }
 
 // ** Table columns
 export const columns = [
   {
-    name: '#',
+    name: 'ID',
     minWidth: '107px',
     selector: 'id',
-    cell: row => <Link to={`/apps/invoice/preview/${row.u_id}`}>{`#${row.u_id}`}</Link>
-  },
-  {
-    name: <TrendingUp size={14} />,
-    minWidth: '102px',
-    selector: 'invoiceStatus',
-    sortable: true,
-    cell: row => {
-      const color = row.u_subscription === 0 ? invoiceStatusObj['Partial Payment'].color : invoiceStatusObj['Paid'].color,
-        Icon = row.u_subscription === 0 ? invoiceStatusObj['Partial Payment'].icon : invoiceStatusObj['Paid'].icon
-      return <Avatar color={color} icon={<Icon size={14} />} />
-    }
+    cell: row => row._id
   },
   {
     name: 'Client',
@@ -67,8 +56,8 @@ export const columns = [
     selector: 'client',
     sortable: true,
     cell: row => {
-      const name = (`${row.u_firstname  } ${row.u_lastname}`),
-        email = row.u_email ? row.u_email : 'johnDoe@email.com'
+      const name = (`${row.firstName  } ${row.lastName}`),
+        email = row.email ? row.email : 'johnDoe@email.com'
       return (
         <div className='d-flex justify-content-left align-items-center'>
           {renderClient(row)}
@@ -81,24 +70,17 @@ export const columns = [
     }
   },
   {
-    name: 'State',
-    selector: 'state',
+    name: 'Mobile',
+    selector: 'mobileNumber',
     sortable: true,
     minWidth: '150px',
-    cell: row => <span>{row.u_state || ""}</span>
+    cell: row => <span>{row.mobileNumber || ""}</span>
   },
   {
-    name: 'Studio',
-    selector: 'studio',
+    name: 'CreatedAt',
+    selector: 'createdAt',
     sortable: true,
     minWidth: '200px',
-    cell: row => row.u_studio
-  },
-  {
-    name: 'Subscription',
-    selector: 'subscription',
-    sortable: true,
-    minWidth: '164px',
-    cell: row => (row.u_subscription === 0 ? <span>Unsubscription</span> : <Badge color='light-success' pill>Subscription</Badge>)
+    cell: row => row.createdAt
   }
 ]

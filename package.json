@@ -1,5 +1,5 @@
 {
-  "name": "vuexy-react-admin-dashboard",
+  "name": "iKollab-admin-dashboard",
   "version": "6.3.0",
   "private": true,
   "dependencies": {
@@ -24,7 +24,7 @@
     "bs-stepper": "1.7.0",
     "chart.js": "2.9.4",
     "chroma-js": "2.1.0",
-    "classnames": "2.2.6",
+    "classnames": "^2.2.6",
     "cleave.js": "1.6.0",
     "file-saver": "2.0.2",
     "flatpickr": "4.6.3",
@@ -98,6 +98,8 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.0",
+    "@babel/preset-env": "^7.13.0",
     "@types/sortablejs": "^1.10.6",
     "eslint": "^7.8.0",
     "eslint-plugin-import": "^2.22.0",
