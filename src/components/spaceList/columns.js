@@ -32,7 +32,8 @@ const renderClient = row => {
   if (row.spaceImage) {
     return <Avatar className='mr-50' img={row.spaceImages[0].downloadUrl} width='32' height='32' />
   } else {
-    return <Avatar color={color} className='mr-50' content={row.basicInfo.user_id.firstName ? (`${row.basicInfo.user_id.firstName} ${row.basicInfo.user_id.lastName}`) : 'John Doe'} initials />
+    // return <Avatar color={color} className='mr-50' content={row.basicInfo.user_id.firstName ? (`${row.basicInfo.user_id.firstName} ${row.basicInfo.user_id.lastName}`) : 'John Doe'} initials />
+    return <Avatar color={color} className='mr-50' content={'John Doe'} initials />
   }
 }
 
@@ -61,8 +62,9 @@ export const columns = [
     selector: 'client',
     sortable: true,
     cell: row => {
-      const name = (`${row.basicInfo.user_id.firstName  } ${row.basicInfo.user_id.lastName}`),
-        email = row.basicInfo.user_id.email ? row.basicInfo.user_id.email : 'johnDoe@email.com'
+      // const name = (`${row.basicInfo.user_id.firstName  } ${row.basicInfo.user_id.lastName}`),
+      const name = (`test`),
+        email =  'johnDoe@email.com'
       return (
         <div className='d-flex justify-content-left align-items-center'>
           {renderClient(row)}
