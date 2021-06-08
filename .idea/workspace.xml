@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1a9b16f1-c072-4e82-a6d4-77b986263ab4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/spaceList/columns.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/spaceList/columns.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/axiosInstance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/axiosInstance.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +73,7 @@
       <workItem from="1620102584355" duration="4507000" />
       <workItem from="1620272806269" duration="109000" />
       <workItem from="1622587865048" duration="2484000" />
+      <workItem from="1623117806440" duration="678000" />
     </task>
     <servers />
   </component>
